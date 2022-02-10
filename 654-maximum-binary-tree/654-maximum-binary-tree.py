@@ -7,7 +7,7 @@
 class Solution:
     def constructMaximumBinaryTree(self, nums: List[int]) -> Optional[TreeNode]:
         
-        def getMaxPos(start, end):
+        def getMaxValPos(start, end):
             maxi = float('-inf')
             pos = -1
             for i in range(start, end + 1):
@@ -15,14 +15,15 @@ class Solution:
                     maxi = nums[i]
                     pos = i
             return pos
-        def constructTree(l,r,root):
-            # if l > r:
-            #     return root
-            pos = getMaxPos(l, r)
+        
+        def constructTree(start, end):
+            pos = getMaxValPos(start, end)
             root = TreeNode(nums[pos])
-            if l != pos:
-                root.left = constructTree(l, pos-1, root)
-            if r != pos:
-                root.right = constructTree(pos+1, r, root)
+            if start != pos:
+                root.left = constructTree(start, pos-1)
+            if end != pos:
+                root.right = constructTree(pos+1, end)
             return root
-        return constructTree(0, len(nums) - 1, None)
+
+
+        return constructTree(0, len(nums) - 1)
