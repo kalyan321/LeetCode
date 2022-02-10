@@ -5,11 +5,13 @@
 #         self.next = next
 class Solution:
     def pairSum(self, head: Optional[ListNode]) -> int:
-        l = []
-        while head:
-            l.append(head.val)
-            head = head.next
-        maxi = float('-inf')
-        for i in range(len(l)//2):
-            maxi = max(maxi, l[i] + l[-1-i])
-        return maxi
+        def maxPairSum(head, i):
+            if not head.next:
+                return 0, head, 0
+            count, node, res = maxPairSum(head.next, i + 1)
+            if i <= count:
+                res = max(res, node.val + head.val)
+                return count + 1, node.next, res
+            else:
+                return count + 1, head, res
+        return maxPairSum(head, 0)[2]
