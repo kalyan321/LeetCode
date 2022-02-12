@@ -12,8 +12,8 @@ class Solution:
             while stack and stack[-1] <= head.val:
                 stack.pop(-1)
             if stack:
-                ans = [stack[-1]] + ans
+                ans.append(stack[-1])
             else:
-                ans = [0] + ans
+                ans.append(0)
             return ans, stack + [head.val]
-        return recur(head)[0]
+        return recur(head)[0][::-1]
