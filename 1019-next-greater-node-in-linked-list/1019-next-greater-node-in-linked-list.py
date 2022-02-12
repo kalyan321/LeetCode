@@ -9,14 +9,17 @@ class Solution:
         def recur(head):
             if head.next is None:
                 self.res.append(0)
-                return [head.val]
-            stack = recur(head.next)
+                return [0], [head.val]
+            ans, stack = recur(head.next)
             while stack and stack[-1] <= head.val:
                 stack.pop(-1)
             if stack:
                 self.res.append(stack[-1])
+                ans.append(stack[-1])
             else:
+                ans.append(0)
                 self.res.append(0)
-            return stack + [head.val]
-        recur(head)
+            return ans, stack + [head.val]
+        s = recur(head)
+        return(s[0][::-1])
         return self.res[::-1]
