@@ -5,7 +5,6 @@ class Solution:
             if pos >= len(nums):
                 res.append(sub)
                 return
-            subsets(pos + 1, sub)
-            subsets(pos + 1, sub + [nums[pos]])
+            subsets(pos + 1, sub), subsets(pos + 1, sub + [nums[pos]])
         subsets(0, [])
         return res
