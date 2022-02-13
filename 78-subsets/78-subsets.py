@@ -3,7 +3,8 @@ class Solution:
         res = []
         def subsets(pos, sub):
             if pos >= len(nums):
-                return res.append(sub)
+                res.append(sub)
+                return
             subsets(pos + 1, sub), subsets(pos + 1, sub + [nums[pos]])
         subsets(0, [])
         return res
