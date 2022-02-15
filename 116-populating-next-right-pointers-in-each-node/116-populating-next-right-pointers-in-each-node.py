@@ -12,7 +12,6 @@ class Solution:
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if root is None:
             return root
-        lst = []
         queue = [root]
         while queue:
             l = []
