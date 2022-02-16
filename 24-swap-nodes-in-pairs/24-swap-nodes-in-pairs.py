@@ -11,13 +11,10 @@ class Solution:
             rec(head.next, head.next.next)
             if not head.next:
                 return head
-            print(prev.val, head.val)
             temp = head
             head = head.next
             temp.next = head.next
             head.next = temp
             prev.next = head
             return head
-        prev = ListNode()
-        prev.next = head
-        return rec(prev, head)
+        return rec(ListNode(), head)
