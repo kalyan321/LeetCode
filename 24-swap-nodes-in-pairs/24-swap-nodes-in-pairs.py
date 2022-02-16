@@ -15,6 +15,7 @@ class Solution:
             head = head.next
             temp.next = head.next
             head.next = temp
-            prev.next = head
+            if prev != None:
+                prev.next = head
             return head
-        return rec(ListNode(), head)
+        return rec(None, head)
