@@ -5,8 +5,6 @@ class Solution:
         c.sort(key = lambda x : x[1])
         s = ""
         for key, val in c:
-            while val:
-                s = key + s
-                val -= 1
+            s = key * val + s
         return s
         
