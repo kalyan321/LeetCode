@@ -8,11 +8,10 @@ class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         self.summ = 0
         def rootToLeaf(root, sub):
-            if root is None:
-                return
-            if not root.left and not root.right:
-                self.summ += int(sub + str(root.val))
-            rootToLeaf(root.left, sub + str(root.val))
-            rootToLeaf(root.right, sub + str(root.val))
+            if root:
+                if not root.left and not root.right:
+                    self.summ += int(sub + str(root.val))
+                rootToLeaf(root.left, sub + str(root.val))
+                rootToLeaf(root.right, sub + str(root.val))
         rootToLeaf(root, '')
         return self.summ
