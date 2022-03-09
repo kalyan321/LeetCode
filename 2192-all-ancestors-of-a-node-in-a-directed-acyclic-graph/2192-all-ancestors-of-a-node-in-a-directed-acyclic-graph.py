@@ -8,7 +8,7 @@ class Solution:
             self.visited[v] = True
             for nei in self.d[v]:
                 if not self.visited[nei]:
-                    dfs(node, nei)
+                    l = dfs(node, nei)
         self.d = defaultdict(list)
         self.g = defaultdict(list)
         for edge in edges:
