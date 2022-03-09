@@ -1,19 +1,19 @@
-from collections import defaultdict
 class Solution(object):
     def eventualSafeNodes(self, graph):
-        d = defaultdict(int)
-        
-        def dfs(v):
-            if d[v] == 1:
-                return False
-            if d[v] == 2:
-                return True
-            d[v] = 1
-            for nei in graph[v]:
-                if d[nei] == 2:
+        WHITE, GRAY, BLACK = 0, 1, 2
+        color = collections.defaultdict(int)
+
+        def dfs(node):
+            if color[node] != WHITE:
+                return color[node] == BLACK
+
+            color[node] = GRAY
+            for nei in graph[node]:
+                if color[nei] == BLACK:
                     continue
-                elif d[nei] == 1 or not dfs(nei):
+                if color[nei] == GRAY or not dfs(nei):
                     return False
-            d[v] = 2
+            color[node] = BLACK
             return True
+
         return filter(dfs, range(len(graph)))
